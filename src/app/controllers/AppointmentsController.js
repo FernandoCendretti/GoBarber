@@ -82,9 +82,9 @@ class AppointmentsController {
     /**
      * Check for past dates
      */
-    if (isBefore(hourStart, new Date())) {
-      return res.status(400).json({ error: 'Past dates are not permited' });
-    }
+    // if (isBefore(hourStart, new Date())) {
+    //   return res.status(400).json({ error: 'Past dates are not permited' });
+    // }
 
     /**
      * Check date availability
