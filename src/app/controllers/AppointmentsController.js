@@ -18,7 +18,7 @@ class AppointmentsController {
     const { page = 1 } = req.query;
     const appointments = await Appointments.findAll({
       where: { user_id: req.userId, canceled_at: null },
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'past', 'cancelable'],
       limit: 20,
       offset: (page - 1) * 20,
       order: ['date'],
@@ -82,9 +82,9 @@ class AppointmentsController {
     /**
      * Check for past dates
      */
-    // if (isBefore(hourStart, new Date())) {
-    //   return res.status(400).json({ error: 'Past dates are not permited' });
-    // }
+    if (isBefore(hourStart, new Date())) {
+      return res.status(400).json({ error: 'Past dates are not permited' });
+    }
 
     /**
      * Check date availability
